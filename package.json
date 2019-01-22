@@ -1,0 +1,19 @@
+{
+  "name": "bae_systems_mp",
+  "version": "1.0.0",
+  "description": "BAE Systems mission planner for a pair of unmanned aircraft carriers",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanuelquerty/BAE_SystemsMP.git"
+  },
+  "author": "2018-2019 U of A Senior Design Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emanuelquerty/BAE_SystemsMP/issues"
+  },
+  "homepage": "https://github.com/emanuelquerty/BAE_SystemsMP#readme"
+}
