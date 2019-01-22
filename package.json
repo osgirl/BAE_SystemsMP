@@ -4,7 +4,8 @@
   "description": "BAE Systems mission planner for a pair of unmanned aircraft carriers",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/emanuelquerty/BAE_SystemsMP/issues"
   },
-  "homepage": "https://github.com/emanuelquerty/BAE_SystemsMP#readme"
+  "homepage": "https://github.com/emanuelquerty/BAE_SystemsMP#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "electron": "^4.0.2",
+    "express": "^4.16.4"
+  }
 }
