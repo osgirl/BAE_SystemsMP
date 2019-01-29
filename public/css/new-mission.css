@@ -1,0 +1,43 @@
+body{
+    background-color: #d0d5da;
+    font-family: 'Roboto', sans-serif;
+}
+
+#create-mission-wrapper{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: rgb(73, 72, 72);
+}
+
+#create-mission-wrapper p {
+    font-size: 0.9rem;
+}
+
+#new-mission-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#create-mission-wrapper input[type="text"] {
+    border: none;
+    width: 70%;
+    height: 1.8rem;
+    margin: auto;
+    margin-bottom: 1.4rem;
+    font-size: 0.8rem;
+    padding-left: 1rem;
+    border-radius: 4px;
+
+}
+
+#create-mission-wrapper input[type="submit"]{
+    border: none;
+    height: 1.8rem;
+    margin: auto;
+    width: 4rem;
+    color: rgb(5, 5, 5);
+    font-size: 0.8rem;
+    border-radius: 4px;
+    background-color: #b3b9c0;
+}

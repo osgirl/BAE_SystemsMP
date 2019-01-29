@@ -1,4 +1,6 @@
-const allMissions= require('../main');
+const allMissions = require('./all-missions');
+const newMission = require('./new-mission');
+const main = require('../main');
 
 // Create the menuTemplate
 const mainMenuTemplate = [
@@ -7,7 +9,10 @@ const mainMenuTemplate = [
         submenu: [
             { 
                 label: 'New mission                       ',
-                accelerator: process.platform == 'darwin' ? 'Command+N' : 'Ctrl+N'
+                accelerator: process.platform == 'darwin' ? 'Command+N' : 'Ctrl+N'.length,
+                click(){
+                    newMission.createNewMissionWindow();
+                }
             },
             { 
                 label: 'Open a mission                    ',
@@ -25,7 +30,7 @@ const mainMenuTemplate = [
                 label: 'Close',
                 accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click(){
-                    app.quit();
+                    main.app.quit();
                 }
             }
         ]
@@ -37,7 +42,8 @@ const mainMenuTemplate = [
                 label: 'All Missions                      ',
                 accelerator: process.platform == 'darwin' ? 'Command+A' : 'Ctrl+A',
                 click(){
-                    allMissions.allMissionsWindow();
+                    main.mainWindow.webContents.send('open:allMissions', "all-missions");
+                    //allMissions.allMissionsWindow();
                 }
             },
             {
@@ -60,5 +66,22 @@ const mainMenuTemplate = [
         ]
     }
 ];
+
+// Add developer tools item in menu if not in production
+if (process.env.NODE_ENV !== 'production'){
+    mainMenuTemplate.push(
+        {
+            label: 'DevTools',
+            submenu: [
+                {
+                    label: 'Toggle DevTools',
+                    accelerator: process.platform == 'darwin'? 'Command+I' : 'Ctrl+I',
+                    click(item, focusedWindow){
+                       focusedWindow.toggleDevTools();
+                    }
+                }
+            ]
+        });
+}
 
 module.exports = mainMenuTemplate;

@@ -4,13 +4,23 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const { app, BrowserWindow, Menu} = electron;
+const { app, BrowserWindow, Menu, ipcMain} = electron;
 const mainMenuTemplate = require('./controllers/main-menu');
+const newMission = require('./controllers/new-mission');
+
 let mainWindow;
 
 // Wait for the app to be ready
 app.on('ready', ()=>{
-    mainWindow = new BrowserWindow({width: 850, height: 600});
+    mainWindow = new BrowserWindow(
+        {
+            width: 1300, 
+            height: 900,
+            webPreferences: {
+                nodeIntegration: true,
+                contextIsolation: false
+            }
+        });
 
     // Load index.html content in mainWindow
     mainWindow.loadURL(url.format({
@@ -27,7 +37,18 @@ app.on('ready', ()=>{
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     Menu.setApplicationMenu(mainMenu);
 
+    exports.mainWindow = mainWindow;
+
 });
+
+// Catch mission name sent from new-mission.js 
+ipcMain.on('create:newMission', (event, mission_name)=>{
+    mainWindow.webContents.send('create:newMission', mission_name);
+    newMission.newMissionWindow.close();
+});
+
+
+
 // Quit app when the last window is closed
 app.on('window-all-closed', () => {
     app.quit()
@@ -38,13 +59,4 @@ if (process.platform == 'darwin'){
     mainMenuTemplate.unshift({label: ""});
 }
 
-
-exports.allMissionsWindow = function createAllMissionsWindow(){
-    let allMissionsWindow = new BrowserWindow({parent: mainWindow, width: 550, height: 350});
-    
-    allMissionsWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "views", "all-missions.html"),
-        protocol: 'file:',
-        slashes: true
-    }))
-}
+exports.app = app;

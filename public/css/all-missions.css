@@ -1,0 +1,25 @@
+#all-missions-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mission-container{ 
+    width: 4rem;
+    height: 6rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 4rem 2rem 0;
+
+}
+
+.mission-image {
+    width: 90%;
+    height: 60%;
+}
+
+.mission-name {
+    font-size: 0.8rem;
+}
